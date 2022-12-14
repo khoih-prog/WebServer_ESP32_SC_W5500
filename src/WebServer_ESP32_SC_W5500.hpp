@@ -75,6 +75,8 @@
 	#error This code is intended to run on the ESP32_S2/3, ESP32_C3 platform! Please check your Tools->Board setting.  
 #endif
 
+#define BOARD_NAME      ARDUINO_BOARD
+
 //////////////////////////////////////////////////////////////
 
 //#define CONFIG_ETH_SPI_ETHERNET_W5500				true
