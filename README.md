@@ -35,6 +35,7 @@
   * [Basic Operation](#basic-operations)
   * [Advanced Options](#advanced-options)
   * [Other Function Calls](#other-function-calls)
+* [How to connect W5500 to ESP32_S3](#How-to-connect-W5500-to-ESP32_S3)
 * [Examples](#examples)
   * [Original Examples](#original-examples)
     * [ 1. AdvancedWebServer](examples/AdvancedWebServer)
