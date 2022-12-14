@@ -54,11 +54,11 @@
   * [File AdvancedWebServer.ino](#file-advancedwebserverino)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [ 1. AdvancedWebServer on ESP32S3_DEV with ESP32_S3_W5500](#1-AdvancedWebServer-on-ESP32S3_DEV-with-ESP32_S3_W5500)
-  * [ 2. MQTT_ThingStream on ESP32S3_DEV with ESP32_S3_W5500](#3-MQTT_ThingStream-on-ESP32S3_DEV-with-ESP32_S3_W5500)
-  * [ 3. MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500](#4-MQTTClient_Auth-on-ESP32S3_DEV-with-ESP32_S3_W5500)
-  * [ 4. MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500](#5-MQTTClient_Basic-on-ESP32S3_DEV-with-ESP32_S3_W5500)
-  * [ 6. WebClient on ESP32S3_DEV with ESP32_S3_W5500](#6-WebClient-on-ESP32S3_DEV-with-ESP32_S3_W5500)
-  * [ 7. UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500](#7-UDPSendReceive-on-ESP32S3_DEV-with-ESP32_S3_W5500)
+  * [ 2. MQTT_ThingStream on ESP32S3_DEV with ESP32_S3_W5500](#2-MQTT_ThingStream-on-ESP32S3_DEV-with-ESP32_S3_W5500)
+  * [ 3. MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500](#3-MQTTClient_Auth-on-ESP32S3_DEV-with-ESP32_S3_W5500)
+  * [ 4. MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500](#4-MQTTClient_Basic-on-ESP32S3_DEV-with-ESP32_S3_W5500)
+  * [ 5. WebClient on ESP32S3_DEV with ESP32_S3_W5500](#5-WebClient-on-ESP32S3_DEV-with-ESP32_S3_W5500)
+  * [ 6. UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500](#6-UDPSendReceive-on-ESP32S3_DEV-with-ESP32_S3_W5500)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Releases](#releases)
@@ -118,7 +118,7 @@ This [**WebServer_ESP32_SC_W5500** library](https://github.com/khoih-prog/WebSer
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based ESP32_DEV with W5500 boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based ESP32S2/S3/C3_DEV with W5500 boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
 
 
 ---
@@ -178,8 +178,6 @@ in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cp
 // To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
 #include "WebServer_ESP32_SC_W5500.h"           //https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
 ```
-
-Check the new [**multiFileProject** example](examples/multiFileProject) for a `HOWTO` demo.
 
 
 ---
@@ -484,7 +482,7 @@ MQTT Message receive [ESP32_Pub] Hello from MQTT_ThingStream on ESP32S3_DEV with
 
 ---
 
-#### 4. MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500
+#### 3. MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500
 
 The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Auth example](examples/MQTTClient_Auth)
 
@@ -515,7 +513,7 @@ Message Send : MQTT_Pub => Hello from MQTTClient_Auth on ESP32S3_DEV with ESP32_
 
 ---
 
-#### 5. MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500
+#### 4. MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500
 
 The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Basic example](examples/MQTTClient_Basic)
 
@@ -545,7 +543,7 @@ Message arrived [MQTT_Pub] Hello from MQTTClient_Basic on ESP32S3_DEV with ESP32
 ---
 
 
-#### 6. WebClient on ESP32S3_DEV with ESP32_S3_W5500
+#### 5. WebClient on ESP32S3_DEV with ESP32_S3_W5500
 
 The terminal output of **ESP32S3_DEV with W5500** running [WebClient example](examples/WebClient)
 
@@ -631,7 +629,7 @@ Disconnecting from server...
 
 ---
 
-#### 7. UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500
+#### 6. UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500
 
 The terminal output of **ESP32S3_DEV with W5500** running [UDPSendReceive example](examples/UDPSendReceive)
 
