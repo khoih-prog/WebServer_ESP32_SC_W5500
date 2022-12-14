@@ -25,6 +25,7 @@
   * [VS Code & PlatformIO](#vs-code--platformio)
 * [Libraries' Patches](#libraries-patches)
   * [1. For fixing ESP32 compile error](#1-for-fixing-esp32-compile-error)
+* [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix-multiple-definitions-linker-error)
 * [HOWTO Use analogRead() with ESP32 running WiFi and/or BlueTooth (BT/BLE)](#howto-use-analogread-with-esp32-running-wifi-andor-bluetooth-btble)
   * [1. ESP32 has 2 ADCs, named ADC1 and ADC2](#1--esp32-has-2-adcs-named-adc1-and-adc2)
   * [2. ESP32 ADCs functions](#2-esp32-adcs-functions)
@@ -50,6 +51,7 @@
     * [12. WebClient](examples/WebClient)
     * [13. WebClientRepeating](examples/WebClientRepeating)
     * [14. WebServer](examples/WebServer)
+    * [15. **multiFileProject**](examples/multiFileProject)
 * [Example AdvancedWebServer](#example-advancedwebserver)
   * [File AdvancedWebServer.ino](#file-advancedwebserverino)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
@@ -100,7 +102,7 @@ Please also check these twin libraries
 1. [WebServer_WT32_ETH01](https://github.com/khoih-prog/WebServer_WT32_ETH01) for ESP32-based `WT32_ETH01` using `LwIP LAN8720`
 2. [WebServer_ESP32_ENC](https://github.com/khoih-prog/WebServer_ESP32_ENC) for ESP32-boards using `LwIP ENC28J60`
 3. [WebServer_ESP32_W5500](https://github.com/khoih-prog/WebServer_ESP32_W5500) for ESP32-boards using `LwIP W5500`
-
+4. [WebServer_ESP32_SC_ENC](https://github.com/khoih-prog/WebServer_ESP32_SC_ENC) for ESP32_S3-boards using `LwIP ENC28J60`
 
 
 #### Currently supported Boards
@@ -111,6 +113,23 @@ This [**WebServer_ESP32_SC_W5500** library](https://github.com/khoih-prog/WebSer
  
  Hopefully the `ESP32_S2` and `ESP32_C3-based` boards will be supported in the near future to use `LwIP W5500 or ENC28J60 Ethernet`
 
+
+#### ESP32S3_DEV
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/ESP32S3_DEV.png">
+</p> 
+
+#### W5500
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/W5500.png">
+</p>
+ 
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/W5500_small.png">
+</p> 
+ 
 ---
 ---
 
@@ -155,6 +174,32 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 
 To fix [`ESP32 compile error`](https://github.com/espressif/arduino-esp32), just copy the following file into the [`ESP32`](https://github.com/espressif/arduino-esp32) cores/esp32 directory (e.g. ./arduino-1.8.19/hardware/espressif/cores/esp32) to overwrite the old file:
 - [Server.h](LibraryPatches/esp32/cores/esp32/Server.h)
+
+
+---
+---
+
+
+### HOWTO Fix `Multiple Definitions` Linker Error
+
+The current library implementation, using `xyz-Impl.h` instead of standard `xyz.cpp`, possibly creates certain `Multiple Definitions` Linker error in certain use cases.
+
+You can include this `.hpp` file
+
+```cpp
+// Can be included as many times as necessary, without `Multiple Definitions` Linker Error
+#include "WebServer_ESP32_SC_W5500.hpp"     //https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
+```
+
+in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
+
+```cpp
+// To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
+#include "WebServer_ESP32_SC_W5500.h"           //https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
+```
+
+Check the new [**multiFileProject** example](examples/multiFileProject) for a `HOWTO` demo.
+
 
 
 ---
@@ -358,6 +403,52 @@ void serveStatic();
 size_t streamFile();
 ```
 
+
+---
+---
+
+### How to connect W5500 to ESP32_S3
+
+You can change the `INT` pin to another one. Default is `GPIO4`
+
+```cpp
+// Must connect INT to GPIOxx or not working
+#define INT_GPIO            4
+```
+
+---
+
+
+#### ESP32S3_DEV
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/ESP32S3_DEV.png">
+</p> 
+
+#### W5500
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/W5500.png">
+</p>
+ 
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/W5500_small.png">
+</p> 
+ 
+
+
+|W5500|<--->|ESP32_S3|
+|:-:|:-:|:-:|
+|MOSI|<--->|GPIO11|
+|MISO|<--->|GPIO13|
+|SCK|<--->|GPIO12|
+|SS|<--->|GPIO10|
+|INT|<--->|GPIO4|
+|RST|<--->|RST|
+|GND|<--->|GND|
+|3.3V|<--->|3.3V|
+
+
 ---
 ---
 
@@ -379,7 +470,7 @@ size_t streamFile();
 12. [WebClient](examples/WebClient)
 13. [WebClientRepeating](examples/WebClientRepeating)
 14. [WebServer](examples/WebServer)
-
+15. [**multiFileProject**](examples/multiFileProject)
 
 ---
 ---
@@ -406,7 +497,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```cpp
 Start AdvancedWebServer on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -434,7 +525,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTT_ThingStream exam
 
 ```cpp
 Start MQTT_ThingStream on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -467,7 +558,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Auth examp
 
 ```cpp
 Start MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -497,7 +588,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Basic exam
 
 ```cpp
 Start MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -527,7 +618,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [WebClient example](ex
 
 ```cpp
 Start WebClient on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -613,7 +704,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [UDPSendReceive exampl
 
 ```cpp
 Start UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -683,11 +774,14 @@ Submit issues to: [WebServer_ESP32_SC_W5500 issues](https://github.com/khoih-pro
 
 1. Bug Searching and Killing
 2. Add support to **ESP32_S2 and ESP32_C3-based boards** using `LwIP W5500 Ethernet`
-3. Add support to **ESP32_S2/S3 and ESP32_C3-based boards** using `LwIP ENC28J60 Ethernet`
+3. Add support to **ESP32_S2 and ESP32_C3-based boards** using `LwIP ENC28J60 Ethernet`
 
 ### DONE
 
  1. Add support to **ESP32S3-based boards** using `LwIP W5500 Ethernet`
+ 2. Using `SPI_DMA_CH_AUTO` instead of manually selected
+ 3. Add example [multiFileProject]](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
+
 
 ---
 ---
@@ -728,7 +822,7 @@ If you want to contribute to this project:
 
 ## Copyright
 
-- Copyright (c) 2016- Hristo Gochkov
+- Copyright (c) 2016- Ivan Grokhotkov
 
 - Copyright (c) 2022- Khoi Hoang
 

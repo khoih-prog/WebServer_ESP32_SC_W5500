@@ -9,11 +9,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
+  1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
  *****************************************************************************************************************************/
 
 #pragma once
@@ -30,34 +31,24 @@
     #warning Using code for ESP32 core v2.0.0+ in WebServer_ESP32_SC_W5500.h
   #endif
 
-  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.0.0 for core v2.0.0+"
+  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+"
 #else
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 3)
     #warning Using code for ESP32 core v1.0.6- in WebServer_ESP32_SC_W5500.h
   #endif
 
-  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.0.0 for core v1.0.6-"
+  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.0.1 for core v1.0.6-"
 #endif
+
+//////////////////////////////////////////////////////////////
 
 #define WEBSERVER_ESP32_SC_W5500_VERSION_MAJOR    1
 #define WEBSERVER_ESP32_SC_W5500_VERSION_MINOR    0
-#define WEBSERVER_ESP32_SC_W5500_VERSION_PATCH    0
+#define WEBSERVER_ESP32_SC_W5500_VERSION_PATCH    1
 
-#define WEBSERVER_ESP32_SC_W5500_VERSION_INT      1000000
+#define WEBSERVER_ESP32_SC_W5500_VERSION_INT      1000001
 
 /////////////////////////////////////////////////////////////
-
-#if ESP32
-
-  #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 3)
-    #warning Using ESP32 architecture for WebServer_ESP32_SC_W5500
-  #endif
-
-  #define BOARD_NAME      ARDUINO_BOARD
-
-#else
-  #error This code is designed to run on ESP32 platform! Please check your Tools->Board setting.
-#endif
 
 #include <Arduino.h>
 
@@ -69,5 +60,7 @@
 
 #include "WebServer_ESP32_SC_W5500.hpp"
 #include "WebServer_ESP32_SC_W5500_Impl.h"
+
+//////////////////////////////////////////////////////////////
 
 #endif    // WEBSERVER_ESP32_SC_W5500_H

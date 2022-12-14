@@ -9,11 +9,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
+  1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
  *****************************************************************************************************************************/
 
 #pragma once
@@ -30,16 +31,22 @@ void ESP32_W5500_onEvent()
   WiFi.onEvent(ESP32_W5500_event);
 }
 
+//////////////////////////////////////////////////////////////
+
 void ESP32_W5500_waitForConnect()
 {
   while (!ESP32_W5500_eth_connected)
     delay(100);
 }
 
+//////////////////////////////////////////////////////////////
+
 bool ESP32_W5500_isConnected()
 {
   return ESP32_W5500_eth_connected;
 }
+
+//////////////////////////////////////////////////////////////
 
 void ESP32_W5500_event(WiFiEvent_t event)
 {
@@ -145,5 +152,7 @@ void ESP32_W5500_event(WiFiEvent_t event)
       break;
   }
 }
+
+//////////////////////////////////////////////////////////////
 
 #endif    // WEBSERVER_ESP32_SC_W5500_IMPL_H

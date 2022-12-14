@@ -16,11 +16,17 @@
 
 * [Changelog](#changelog)
   * [Releases v1.0.0](#releases-v100)
+  * [Releases v1.0.1](#releases-v101)
 
 ---
 ---
 
 ## Changelog
+
+#### Releases v1.0.1
+
+1. Using `SPI_DMA_CH_AUTO` instead of manually selected
+2. Add example [multiFileProject]](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
 
 #### Releases v1.0.0
 

@@ -9,11 +9,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
+  1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
  *****************************************************************************************************************************/
 
 #pragma once
@@ -85,35 +86,111 @@
 
 #include <hal/spi_types.h>
 
-#if !defined(ETH_SPI_HOST)
-	// Using SPI2 for ESP32_SC, but name is SPI3_HOST
-  #define ETH_SPI_HOST            SPI3_HOST
+//////////////////////////////////////////////////////////////
+
+#if USING_ESP32_S3
+
+	#if !defined(ETH_SPI_HOST)
+		// Using SPI2 for ESP32_SC, but name is SPI3_HOST
+		#define ETH_SPI_HOST            SPI3_HOST
+	#endif
+
+	#if !defined(SPI_CLOCK_MHZ)
+		// Using 25MHz for W5500, 14MHz for W5100
+		#define SPI_CLOCK_MHZ       25
+	#endif
+
+	#if !defined(INT_GPIO)
+		#define INT_GPIO            4
+	#endif
+
+	#if !defined(MISO_GPIO)
+		#define MISO_GPIO           13
+	#endif
+
+	#if !defined(MOSI_GPIO)
+		#define MOSI_GPIO           11
+	#endif
+
+	#if !defined(SCK_GPIO)
+		#define SCK_GPIO            12
+	#endif
+
+	#if !defined(CS_GPIO)
+		#define CS_GPIO             10
+	#endif
+
+//////////////////////////////////////////////////////////////
+
+#elif USING_ESP32_S2
+
+	#if !defined(ETH_SPI_HOST)
+		// Using SPI2 for ESP32_SC, but name is SPI3_HOST
+		#define ETH_SPI_HOST            SPI3_HOST
+	#endif
+
+	#if !defined(SPI_CLOCK_MHZ)
+		// Using 25MHz for W5500, 14MHz for W5100
+		#define SPI_CLOCK_MHZ       25
+	#endif
+
+	#if !defined(INT_GPIO)
+		#define INT_GPIO            4
+	#endif
+
+	#if !defined(MISO_GPIO)
+		#define MISO_GPIO           37
+	#endif
+
+	#if !defined(MOSI_GPIO)
+		#define MOSI_GPIO           35
+	#endif
+
+	#if !defined(SCK_GPIO)
+		#define SCK_GPIO            36
+	#endif
+
+	#if !defined(CS_GPIO)
+		#define CS_GPIO             34
+	#endif
+
+//////////////////////////////////////////////////////////////
+
+#elif USING_ESP32_C3
+
+	#if !defined(ETH_SPI_HOST)
+		// Using SPI2 for ESP32_SC, but name is SPI3_HOST
+		#define ETH_SPI_HOST            SPI3_HOST
+	#endif
+
+	#if !defined(SPI_CLOCK_MHZ)
+		// Using 25MHz for W5500, 14MHz for W5100
+		#define SPI_CLOCK_MHZ       25
+	#endif
+
+	#if !defined(INT_GPIO)
+		#define INT_GPIO            4
+	#endif
+
+	#if !defined(MISO_GPIO)
+		#define MISO_GPIO           5
+	#endif
+
+	#if !defined(MOSI_GPIO)
+		#define MOSI_GPIO           6
+	#endif
+
+	#if !defined(SCK_GPIO)
+		#define SCK_GPIO            
+	#endif
+
+	#if !defined(CS_GPIO)
+		#define CS_GPIO             7
+	#endif
+	
 #endif
 
-#if !defined(SPI_CLOCK_MHZ)
-	// Using 25MHz for W5500, 14MHz for W5100
-  #define SPI_CLOCK_MHZ       25
-#endif
-
-#if !defined(INT_GPIO)
-  #define INT_GPIO            4
-#endif
-
-#if !defined(MISO_GPIO)
-  #define MISO_GPIO           13
-#endif
-
-#if !defined(MOSI_GPIO)
-  #define MOSI_GPIO           11
-#endif
-
-#if !defined(SCK_GPIO)
-  #define SCK_GPIO            12
-#endif
-
-#if !defined(CS_GPIO)
-  #define CS_GPIO             10
-#endif
+//////////////////////////////////////////////////////////////
 
 extern bool ESP32_W5500_eth_connected;
 

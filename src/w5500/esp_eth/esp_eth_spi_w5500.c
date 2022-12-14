@@ -9,11 +9,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
+  1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
  *****************************************************************************************************************************/
 
 #include <stdio.h>
@@ -74,18 +75,7 @@ esp_eth_mac_t* w5500_begin(int MISO_GPIO, int MOSI_GPIO, int SCLK_GPIO, int CS_G
     .quadhd_io_num = -1,
   };
 
-#if ( defined(ARDUINO_ESP32S3_DEV) || defined(ARDUINO_ESP32_S3_BOX) || defined(ARDUINO_TINYS3) || \
-        defined(ARDUINO_PROS3) || defined(ARDUINO_FEATHERS3) )
-  int dma_chan = 3;
-#else
-  int dma_chan = 3;
-#endif
-
-  // for ESP32_S2, ESP32_S3 and ESP32_C3
-  // Using DMA channel 3 for HSPI_HOST
-  // Using DMA channel 1 for FSPI_HOST
-  // Using DMA channel 2 for VSPI_HOST
-  if ( ESP_OK != spi_bus_initialize( SPIHOST, &buscfg, dma_chan ))
+  if ( ESP_OK != spi_bus_initialize( SPIHOST, &buscfg, SPI_DMA_CH_AUTO ))
   {
     ESP_LOGE(TAG, "%s(%d): Error spi_bus_initialize", __FUNCTION__, __LINE__);
 
