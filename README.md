@@ -161,28 +161,6 @@ To fix [`ESP32 compile error`](https://github.com/espressif/arduino-esp32), just
 ---
 
 
-### HOWTO Fix `Multiple Definitions` Linker Error
-
-The current library implementation, using `xyz-Impl.h` instead of standard `xyz.cpp`, possibly creates certain `Multiple Definitions` Linker error in certain use cases.
-
-You can include this `.hpp` file
-
-```cpp
-// Can be included as many times as necessary, without `Multiple Definitions` Linker Error
-#include "WebServer_ESP32_SC_W5500.hpp"     //https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
-```
-
-in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
-
-```cpp
-// To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
-#include "WebServer_ESP32_SC_W5500.h"           //https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
-```
-
-
----
----
-
 ### HOWTO Use analogRead() with ESP32 running WiFi and/or BlueTooth (BT/BLE)
 
 Please have a look at [**ESP_WiFiManager Issue 39: Not able to read analog port when using the autoconnect example**](https://github.com/khoih-prog/ESP_WiFiManager/issues/39) to have more detailed description and solution of the issue.
