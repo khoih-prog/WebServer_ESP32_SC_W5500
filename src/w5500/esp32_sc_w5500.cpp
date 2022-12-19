@@ -9,12 +9,13 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.0.1
+  Version: 1.1.0
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
   1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
+  1.1.0   K Hoang      19/12/2022 dd support to ESP32_S2_W5500 (ESP32_S2 + W5500)
  *****************************************************************************************************************************/
 
 #define _ETHERNET_WEBSERVER_LOGLEVEL_       1
@@ -136,17 +137,17 @@ bool ESP32_W5500::begin(int MISO, int MOSI, int SCLK, int CS, int INT, int SPICL
     return false;
   }
 
+#if USING_ESP32_S3
   eth_mac->set_addr(eth_mac, W5500_Mac);
-
-#if 1
+#else
+  eth_mac->set_addr(eth_mac, mac_eth);
+#endif
 
   if ( (SPICLOCK_MHZ < 14) || (SPICLOCK_MHZ > 25) )
   {
     ET_LOGERROR("SPI Clock must be >= 14 and <= 25 MHz for W5500");
     ESP_ERROR_CHECK(ESP_FAIL);
   }
-
-#endif
 
   /* attach Ethernet driver to TCP/IP stack */
   if (esp_netif_attach(eth_netif, esp_eth_new_netif_glue(eth_handle)) != ESP_OK)
