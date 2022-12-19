@@ -845,7 +845,7 @@ Submit issues to: [WebServer_ESP32_SC_W5500 issues](https://github.com/khoih-pro
 
  1. Add support to **ESP32S3-based boards** using `LwIP W5500 Ethernet`
  2. Using `SPI_DMA_CH_AUTO` instead of manually selected
- 3. Add example [multiFileProject]](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
+ 3. Add example [multiFileProject](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
  4. Add support to **ESP32S2-based boards** using `LwIP W5500 Ethernet`
 
 ---
