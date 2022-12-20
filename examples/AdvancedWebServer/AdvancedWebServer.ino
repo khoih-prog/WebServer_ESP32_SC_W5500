@@ -62,6 +62,20 @@
 //#define SCK_GPIO            12
 //#define CS_GPIO             10
 
+// For ESP32_C3
+// Optional values to override default settings
+// Don't change unless you know what you're doing
+//#define ETH_SPI_HOST        SPI2_HOST
+//#define SPI_CLOCK_MHZ       25
+
+// Must connect INT to GPIOxx or not working
+//#define INT_GPIO            4
+
+//#define MISO_GPIO           13
+//#define MOSI_GPIO           11
+//#define SCK_GPIO            12
+//#define CS_GPIO             10
+
 //////////////////////////////////////////////////////////
 
 #include <WebServer_ESP32_SC_W5500.h>

@@ -15,6 +15,7 @@
 
 
 * [Changelog](#changelog)
+  * [Releases v1.2.0](#releases-v120)
   * [Releases v1.1.0](#releases-v110)
   * [Releases v1.0.1](#releases-v101)
   * [Releases v1.0.0](#releases-v100)
@@ -23,6 +24,10 @@
 ---
 
 ## Changelog
+
+#### Releases v1.2.0
+
+1. Add support to ESP32_C3-based boards using `LwIP W5500 Ethernet`
 
 #### Releases v1.1.0
 

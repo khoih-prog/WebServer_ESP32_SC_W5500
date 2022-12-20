@@ -35,7 +35,7 @@
   * [Basic Operation](#basic-operations)
   * [Advanced Options](#advanced-options)
   * [Other Function Calls](#other-function-calls)
-* [How to connect W5500 to ESP32_S2/S3](#How-to-connect-W5500-to-ESP32_S2S3)
+* [How to connect W5500 to ESP32_S2/S3/C3](#How-to-connect-W5500-to-ESP32_S2S3C3)
 * [Examples](#examples)
   * [Original Examples](#original-examples)
     * [ 1. AdvancedWebServer](examples/AdvancedWebServer)
@@ -63,6 +63,7 @@
   * [ 5. WebClient on ESP32S3_DEV with ESP32_S3_W5500](#5-WebClient-on-ESP32S3_DEV-with-ESP32_S3_W5500)
   * [ 6. UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500](#6-UDPSendReceive-on-ESP32S3_DEV-with-ESP32_S3_W5500)
   * [ 7. AdvancedWebServer on ESP32S2_DEV with ESP32_S2_W5500](#7-AdvancedWebServer-on-ESP32S2_DEV-with-ESP32_S2_W5500)
+  * [ 8. AdvancedWebServer on ESP32C3_DEV with ESP32_C3_W5500](#8-AdvancedWebServer-on-ESP32C3_DEV-with-ESP32_C3_W5500)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Releases](#releases)
@@ -108,6 +109,14 @@ Please also check these twin libraries
 3. [WebServer_ESP32_W5500](https://github.com/khoih-prog/WebServer_ESP32_W5500) for ESP32-boards using `LwIP W5500`
 4. [WebServer_ESP32_SC_ENC](https://github.com/khoih-prog/WebServer_ESP32_SC_ENC) for ESP32_S3-boards using `LwIP ENC28J60`
 
+and more complex libraries for ESP32-based using `LwIP Ethernet`
+
+1. [AsyncHTTPRequest_ESP32_Ethernet](https://github.com/khoih-prog/AsyncHTTPRequest_ESP32_Ethernet)
+2. [AsyncHTTPSRequest_ESP32_Ethernet](https://github.com/khoih-prog/AsyncHTTPSRequest_ESP32_Ethernet)
+3. [AsyncMQTT_ESP32](https://github.com/khoih-prog/AsyncMQTT_ESP32)
+4. [HTTPS_Server_Generic](https://github.com/khoih-prog/HTTPS_Server_Generic)
+
+
 ---
 
 #### Currently supported Boards
@@ -116,9 +125,9 @@ This [**WebServer_ESP32_SC_W5500** library](https://github.com/khoih-prog/WebSer
 
  1. **ESP32_S3 boards** using `LwIP W5500 Ethernet`
  2. **ESP32_S2 boards** using `LwIP W5500 Ethernet`
+ 3. **ESP32_C3 boards** using `LwIP W5500 Ethernet`
  
- Hopefully the `ESP32_C3-based` boards will be supported in the near future to use `LwIP W5500 or ENC28J60 Ethernet`
-
+---
 
 #### ESP32S2_DEV
 
@@ -131,6 +140,14 @@ This [**WebServer_ESP32_SC_W5500** library](https://github.com/khoih-prog/WebSer
 <p align="center">
     <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/ESP32S3_DEV.png">
 </p> 
+
+#### ESP32C3_DEV
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/ESP32_C3_DevKitC_02.png">
+</p> 
+
+---
 
 #### W5500
 
@@ -417,7 +434,7 @@ size_t streamFile();
 ---
 ---
 
-### How to connect W5500 to ESP32_S2/S3
+### How to connect W5500 to ESP32_S2/S3/C3
 
 You can change the `INT` pin to another one. Default is `GPIO4`
 
@@ -475,6 +492,27 @@ You can change the `INT` pin to another one. Default is `GPIO4`
 |SCK|<--->|GPIO36|
 |SS|<--->|GPIO34|
 |INT|<--->|GPIO4|
+|RST|<--->|RST|
+|GND|<--->|GND|
+|3.3V|<--->|3.3V|
+
+---
+
+
+#### ESP32C3_DEV
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/ESP32_C3_DevKitC_02.png">
+</p> 
+
+
+|W5500|<--->|ESP32_C3|
+|:-:|:-:|:-:|
+|MOSI|<--->|GPIO6|
+|MISO|<--->|GPIO5|
+|SCK|<--->|GPIO4|
+|SS|<--->|GPIO7|
+|INT|<--->|GPIO10|
 |RST|<--->|RST|
 |GND|<--->|GND|
 |3.3V|<--->|3.3V|
@@ -803,6 +841,39 @@ HTTP EthernetWebServer is @ IP : 192.168.2.133
 ...
 ```
 
+---
+
+
+#### 8. AdvancedWebServer on ESP32C3_DEV with ESP32_C3_W5500
+
+The following are debug terminal output and screen shot when running example [AdvancedWebServer](examples/AdvancedWebServer) on `ESP32C3_DEV` with `ESP32_C3_W5500`. The `built-in MAC address` is used now instead of user-defined one.
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/raw/main/pics/AdvancedWebServer_ESP32_C3.png">
+</p>
+
+
+```cpp
+Start AdvancedWebServer on ESP32C3_DEV with ESP32_C3_W5500
+WebServer_ESP32_C3_W5500 v1.2.0 for core v2.0.0+
+[EWS] Default SPI pinout:
+[EWS] SPI_HOST: 1
+[EWS] MOSI: 6
+[EWS] MISO: 5
+[EWS] SCK: 4
+[EWS] CS: 7
+[EWS] INT: 10
+[EWS] SPI Clock (MHz): 25
+[EWS] =========================
+Using built-in mac_eth = 7C:DF:A1:BC:BC:53
+
+ETH Started
+ETH Connected
+ETH MAC: 7C:DF:A1:BC:BC:53, IPv4: 192.168.2.135
+FULL_DUPLEX, 100Mbps
+HTTP EthernetWebServer is @ IP : 192.168.2.135
+...
+```
 
 ---
 ---
@@ -838,8 +909,7 @@ Submit issues to: [WebServer_ESP32_SC_W5500 issues](https://github.com/khoih-pro
 ### TO DO
 
 1. Bug Searching and Killing
-2. Add support to **ESP32_C3-based boards** using `LwIP W5500 Ethernet`
-3. Add support to **ESP32_S2 and ESP32_C3-based boards** using `LwIP ENC28J60 Ethernet`
+
 
 ### DONE
 
@@ -847,7 +917,9 @@ Submit issues to: [WebServer_ESP32_SC_W5500 issues](https://github.com/khoih-pro
  2. Using `SPI_DMA_CH_AUTO` instead of manually selected
  3. Add example [multiFileProject](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
  4. Add support to **ESP32S2-based boards** using `LwIP W5500 Ethernet`
-
+ 5. Add support to **ESP32_C3-based boards** using `LwIP W5500 Ethernet`
+ 
+ 
 ---
 ---
 

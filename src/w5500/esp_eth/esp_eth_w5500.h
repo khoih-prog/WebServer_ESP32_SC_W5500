@@ -9,13 +9,14 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.1.0
+  Version: 1.2.0
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
   1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
-  1.1.0   K Hoang      19/12/2022 dd support to ESP32_S2_W5500 (ESP32_S2 + W5500)
+  1.1.0   K Hoang      19/12/2022 Add support to ESP32_S2_W5500 (ESP32_S2 + W5500)
+  1.2.0   K Hoang      20/12/2022 Add support to ESP32_C3_W5500 (ESP32_C3 + W5500)
  *****************************************************************************************************************************/
 
 // Copyright 2021 Espressif Systems (Shanghai) PTE LTD

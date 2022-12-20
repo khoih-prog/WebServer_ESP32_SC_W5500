@@ -9,13 +9,14 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.1.0
+  Version: 1.2.0
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      13/12/2022 Initial coding for ESP32_S3_W5500 (ESP32_S3 + W5500)
   1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
-  1.1.0   K Hoang      19/12/2022 dd support to ESP32_S2_W5500 (ESP32_S2 + W5500)
+  1.1.0   K Hoang      19/12/2022 Add support to ESP32_S2_W5500 (ESP32_S2 + W5500)
+  1.2.0   K Hoang      20/12/2022 Add support to ESP32_C3_W5500 (ESP32_C3 + W5500)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -56,7 +57,7 @@
   	#define SHIELD_TYPE         "ESP32_C3_W5500"
 	#endif
   
-  #error ESP32_C3 not supported yet
+  //#error ESP32_C3 not supported yet
   
 #elif ( defined(ARDUINO_ESP32S3_DEV) || defined(ARDUINO_ESP32_S3_BOX) || defined(ARDUINO_TINYS3) || \
         defined(ARDUINO_PROS3) || defined(ARDUINO_FEATHERS3) )
@@ -126,7 +127,7 @@
 #elif USING_ESP32_S2
 
 	#if !defined(ETH_SPI_HOST)
-		// Using SPI2 for ESP32_SC, but name is SPI3_HOST
+		// Using SPI1 for ESP32_SC, but name is SPI2_HOST
 		#define ETH_SPI_HOST            SPI3_HOST
 	#endif
 
@@ -161,7 +162,7 @@
 
 	#if !defined(ETH_SPI_HOST)
 		// Using SPI2 for ESP32_SC, but name is SPI3_HOST
-		#define ETH_SPI_HOST            SPI3_HOST
+		#define ETH_SPI_HOST            SPI2_HOST
 	#endif
 
 	#if !defined(SPI_CLOCK_MHZ)
@@ -170,7 +171,7 @@
 	#endif
 
 	#if !defined(INT_GPIO)
-		#define INT_GPIO            4
+		#define INT_GPIO            10
 	#endif
 
 	#if !defined(MISO_GPIO)
@@ -182,7 +183,7 @@
 	#endif
 
 	#if !defined(SCK_GPIO)
-		#define SCK_GPIO            
+		#define SCK_GPIO        		4    
 	#endif
 
 	#if !defined(CS_GPIO)
