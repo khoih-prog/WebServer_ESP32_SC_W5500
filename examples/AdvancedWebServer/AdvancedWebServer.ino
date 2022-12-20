@@ -69,12 +69,12 @@
 //#define SPI_CLOCK_MHZ       25
 
 // Must connect INT to GPIOxx or not working
-//#define INT_GPIO            4
+//#define INT_GPIO            10
 
-//#define MISO_GPIO           13
-//#define MOSI_GPIO           11
-//#define SCK_GPIO            12
-//#define CS_GPIO             10
+//#define MISO_GPIO           5
+//#define MOSI_GPIO           6
+//#define SCK_GPIO            4
+//#define CS_GPIO             7
 
 //////////////////////////////////////////////////////////
 
