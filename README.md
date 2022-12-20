@@ -549,7 +549,7 @@ You can change the `INT` pin to another one. Default is `GPIO4`
 #### File [AdvancedWebServer.ino](examples/AdvancedWebServer/AdvancedWebServer.ino)
 
 
-https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/blob/c3d09f42c61e074a3a5ccb06f76368848cf3d4b6/examples/AdvancedWebServer/AdvancedWebServer.ino#L41-L279
+https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/blob/de023206ab284ab9e0cfd063316ea0946eb5eff0/examples/AdvancedWebServer/AdvancedWebServer.ino#L41-L293
 
 ---
 ---
