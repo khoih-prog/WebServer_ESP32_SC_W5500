@@ -166,7 +166,7 @@ This [**WebServer_ESP32_SC_W5500** library](https://github.com/khoih-prog/WebSer
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based ESP32S2/S3/C3_DEV with W5500 boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 2.0.6+`](https://github.com/espressif/arduino-esp32) for ESP32-based ESP32S2/S3/C3_DEV with W5500 boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
 
 
 ---
@@ -566,7 +566,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```cpp
 Start AdvancedWebServer on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -594,7 +594,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTT_ThingStream exam
 
 ```cpp
 Start MQTT_ThingStream on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -627,7 +627,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Auth examp
 
 ```cpp
 Start MQTTClient_Auth on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -657,7 +657,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [MQTTClient_Basic exam
 
 ```cpp
 Start MQTTClient_Basic on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -687,7 +687,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [WebClient example](ex
 
 ```cpp
 Start WebClient on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -773,7 +773,7 @@ The terminal output of **ESP32S3_DEV with W5500** running [UDPSendReceive exampl
 
 ```cpp
 Start UDPSendReceive on ESP32S3_DEV with ESP32_S3_W5500
-WebServer_ESP32_SC_W5500 v1.0.1 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 11
@@ -821,7 +821,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```cpp
 Start AdvancedWebServer on ESP32S2_DEV with ESP32_S2_W5500
-WebServer_ESP32_SC_W5500 v1.1.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 2
 [EWS] MOSI: 35
@@ -855,7 +855,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```cpp
 Start AdvancedWebServer on ESP32C3_DEV with ESP32_C3_W5500
-WebServer_ESP32_C3_W5500 v1.2.0 for core v2.0.0+
+WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+
 [EWS] Default SPI pinout:
 [EWS] SPI_HOST: 1
 [EWS] MOSI: 6
@@ -918,7 +918,7 @@ Submit issues to: [WebServer_ESP32_SC_W5500 issues](https://github.com/khoih-pro
  3. Add example [multiFileProject](https://github.com/khoih-prog/WebServer_ESP32_SC_W5500/tree/main/examples/multiFileProject)
  4. Add support to **ESP32S2-based boards** using `LwIP W5500 Ethernet`
  5. Add support to **ESP32_C3-based boards** using `LwIP W5500 Ethernet`
- 
+ 6. Remove unused variable to avoid compiler warning and error
  
 ---
 ---

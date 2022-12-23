@@ -16,6 +16,7 @@
 
 
 * [Changelog](#changelog)
+  * [Releases v1.2.1](#releases-v121)
   * [Releases v1.2.0](#releases-v120)
   * [Releases v1.1.0](#releases-v110)
   * [Releases v1.0.1](#releases-v101)
@@ -25,6 +26,10 @@
 ---
 
 ## Changelog
+
+#### Releases v1.2.1
+
+1. Remove unused variable to avoid compiler warning and error
 
 #### Releases v1.2.0
 

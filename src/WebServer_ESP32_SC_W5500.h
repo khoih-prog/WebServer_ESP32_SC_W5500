@@ -9,7 +9,7 @@
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_ESP32_SC_W5500
   Licensed under GPLv3 license
 
-  Version: 1.2.0
+  Version: 1.2.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -17,6 +17,7 @@
   1.0.1   K Hoang      14/12/2022 Using SPI_DMA_CH_AUTO instead of manually selected
   1.1.0   K Hoang      19/12/2022 Add support to ESP32_S2_W5500 (ESP32_S2 + W5500)
   1.2.0   K Hoang      20/12/2022 Add support to ESP32_C3_W5500 (ESP32_C3 + W5500)
+  1.2.1   K Hoang      22/12/2022 Remove unused variable to avoid compiler warning and error
  *****************************************************************************************************************************/
 
 #pragma once
@@ -33,22 +34,22 @@
     #warning Using code for ESP32 core v2.0.0+ in WebServer_ESP32_SC_W5500.h
   #endif
 
-  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.2.0 for core v2.0.0+"
+  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.2.1 for core v2.0.0+"
 #else
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 3)
     #warning Using code for ESP32 core v1.0.6- in WebServer_ESP32_SC_W5500.h
   #endif
 
-  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.2.0 for core v1.0.6-"
+  #define WEBSERVER_ESP32_SC_W5500_VERSION       "WebServer_ESP32_SC_W5500 v1.2.1 for core v1.0.6-"
 #endif
 
 //////////////////////////////////////////////////////////////
 
 #define WEBSERVER_ESP32_SC_W5500_VERSION_MAJOR    1
 #define WEBSERVER_ESP32_SC_W5500_VERSION_MINOR    2
-#define WEBSERVER_ESP32_SC_W5500_VERSION_PATCH    0
+#define WEBSERVER_ESP32_SC_W5500_VERSION_PATCH    1
 
-#define WEBSERVER_ESP32_SC_W5500_VERSION_INT      1002000
+#define WEBSERVER_ESP32_SC_W5500_VERSION_INT      1002001
 
 /////////////////////////////////////////////////////////////
 
